@@ -1,8 +1,9 @@
-import { UserEvent, UserId, Timestamp } from '../../types'
+import { UserEvent, UserId } from '../../types'
+import * as input from '../../types/input'
 
 export function createUser (
   userId: UserId,
-  timestamp: Timestamp
+  timestamp: input.Timestamp
 ): UserEvent[] {
 
   console.log(`>>> createUser`)

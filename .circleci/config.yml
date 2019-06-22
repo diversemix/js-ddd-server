@@ -7,18 +7,16 @@ jobs:
     steps:
       - checkout
       - run:
-          working_directory: ./submission-app
           name: Update npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          working_directory: ./submission-app
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "submission-app/package.json" }}
       - run:
-          working_directory: ./submission-app
           name: Install npm 
+          working_directory: ./submission-app
           command:  npm install
       - save_cache:
           working_directory: ./submission-app
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "submission-app/package.json" }}
           paths:
             - node_modules

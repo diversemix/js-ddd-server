@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     docker:
@@ -19,10 +20,8 @@ jobs:
           name: Test
           working_directory: ./submission-app
           command:  yarn test
-      - run:
-          name: Report Test Coverage
-          working_directory: ./submission-app
-          command:  npm install -g codeclimate-test-reporter ; codeclimate-test-reporter < coverage/lcov.info
+      - codecov/upload:
+          file: {{ coverage_report_filepath }}
       - save_cache:
           working_directory: ./submission-app
           key: dependency-cache-{{ checksum "submission-app/package.json" }}

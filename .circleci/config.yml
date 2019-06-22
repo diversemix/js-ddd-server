@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:8.10
     steps:
       - checkout
       - run:
@@ -12,9 +12,9 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "submission-app/package.json" }}
       - run:
-          name: Install npm 
+          name: Yarn
           working_directory: ./submission-app
-          command:  npm install
+          command:  yarn
       - save_cache:
           working_directory: ./submission-app
           key: dependency-cache-{{ checksum "submission-app/package.json" }}

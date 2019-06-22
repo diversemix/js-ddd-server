@@ -14,8 +14,8 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install npm 
-          command: echo $(pwd) ; cd submission-app ; npm install
+          command:  cd submission-app ; echo $(pwd) ;npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - submission-app/node_modules

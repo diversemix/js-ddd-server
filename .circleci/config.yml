@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Test
           working_directory: ./submission-app
-          command:  yarn test
+          command:  yarn test --coverage
       - codecov/upload:
           file: ./submission-app/coverage/coverage-final.json
       - save_cache:

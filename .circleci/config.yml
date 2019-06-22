@@ -19,6 +19,10 @@ jobs:
           name: Test
           working_directory: ./submission-app
           command:  yarn test
+      - run:
+          name: Report Test Coverage
+          working_directory: ./submission-app
+          command:  npm install -g codeclimate-test-reporter ; codeclimate-test-reporter < coverage/lcov.info
       - save_cache:
           working_directory: ./submission-app
           key: dependency-cache-{{ checksum "submission-app/package.json" }}

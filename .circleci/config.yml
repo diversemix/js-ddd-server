@@ -19,10 +19,10 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-  test:
-    steps:
-      - run:
-        name: Test run for Submission App
-        command: npm test -- --coverage
+              # test:
+              # steps:
+              # - run:
+              # name: Test run for Submission App
+              # command: npm test -- --coverage
 #- npm install -g codeclimate-test-reporter
 #- codeclimate-test-reporter < coverage/lcov.info

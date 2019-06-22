@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/submission-app
+    working_directory: ./submission-app
     docker:
       - image: circleci/node:8.9
     steps:
@@ -19,10 +19,13 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-              # test:
-              # steps:
-              # - run:
-              # name: Test run for Submission App
-              # command: npm test -- --coverage
+
+  test:
+    working_directory: ./submission-app
+    steps:
+      - run:
+          name: Test app
+          command: npm test -- --coverage
+# command: |
 #- npm install -g codeclimate-test-reporter
 #- codeclimate-test-reporter < coverage/lcov.info

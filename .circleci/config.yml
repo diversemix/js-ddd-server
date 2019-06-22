@@ -1,8 +1,8 @@
 version: 2.1
 
+#working_directory: ./submission-app
 jobs:
   build:
-    working_directory: ./submission-app
     docker:
       - image: circleci/node:8.9
     steps:

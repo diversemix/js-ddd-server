@@ -1,11 +1,24 @@
 version: 2.1
 
-machine: &machine
-  working_directory: ~/submission-app
-  node:
-    version: 8.9.4
-
 jobs:
+  build:
+    working_directory: ~/submission-app
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install npm 
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
   test:
     steps:
       - run:

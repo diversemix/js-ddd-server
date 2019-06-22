@@ -16,7 +16,7 @@ jobs:
       - run:
           working_directory: ./submission-app
           name: Install npm 
-          command:  cd submission-app ; echo $(pwd) ;npm install
+          command:  npm install
       - save_cache:
           working_directory: ./submission-app
           key: dependency-cache-{{ checksum "package.json" }}

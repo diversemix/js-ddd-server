@@ -15,6 +15,10 @@ jobs:
           name: Yarn
           working_directory: ./submission-app
           command:  yarn
+      - run:
+          name: Test
+          working_directory: ./submission-app
+          command:  yarn test
       - save_cache:
           working_directory: ./submission-app
           key: dependency-cache-{{ checksum "submission-app/package.json" }}

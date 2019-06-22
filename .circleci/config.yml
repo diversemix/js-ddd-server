@@ -3,13 +3,14 @@ version: 2.1
 jobs:
    build:
   #  working_directory: ./submission-app
-   docker:
-     - image: circleci/node:8.9
-   steps:
-     - checkout
-     - run:
-        name: Build Step
-        command: echo Build Step $(pwd)
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run:
+          name: Build Step
+          command: echo Build Step
+
   #        name: Update npm
   #        command: 'sudo npm install -g npm@latest'
   #    - restore_cache:

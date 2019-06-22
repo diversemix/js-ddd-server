@@ -22,7 +22,10 @@ jobs:
 
   test:
     working_directory: ./submission-app
+    docker:
+      - image: circleci/node:8.9
     steps:
+      - checkout
       - run:
           name: Test app
           command: npm test -- --coverage

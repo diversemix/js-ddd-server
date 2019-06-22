@@ -1,36 +1,21 @@
 version: 2.1
 
 jobs:
-   build:
-  #  working_directory: ./submission-app
+  build:
+    working_directory: ./submission-app
     docker:
       - image: circleci/node:8.9
     steps:
       - checkout
       - run:
-          name: Build Step
-          command: echo Build Step
-
-  #        name: Update npm
-  #        command: 'sudo npm install -g npm@latest'
-  #    - restore_cache:
-  #        key: dependency-cache-{{ checksum "package.json" }}
-  #    - run:
-  #        name: Install npm 
-  #        command: npm install
-  #    - save_cache:
-  #        key: dependency-cache-{{ checksum "package.json" }}
-  #        paths:
-  #          - node_modules
-
-  test:
-    docker:
-      - image: circleci/node:8.9
-    steps:
-      - checkout
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Test app
-          command: npm test -- --coverage
-# command: |
-#- npm install -g codeclimate-test-reporter
-#- codeclimate-test-reporter < coverage/lcov.info
+          name: Install npm 
+          command: echo $(pwd) ; cd submission-app ; npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules

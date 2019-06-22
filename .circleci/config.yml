@@ -21,7 +21,7 @@ jobs:
           working_directory: ./submission-app
           command:  yarn test
       - codecov/upload:
-          file: {{ coverage_report_filepath }}
+          file: "submission-app/coverage"
       - save_cache:
           working_directory: ./submission-app
           key: dependency-cache-{{ checksum "submission-app/package.json" }}

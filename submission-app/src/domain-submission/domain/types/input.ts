@@ -1,23 +1,22 @@
 // import * as isUrl from 'is-url'
-import * as t from 'io-ts'
+import { string, partial, refinement, Type } from 'io-ts'
 
-export const Email = t.refinement(t.string, () => /* todo: validation! */ true)
-export const Timestamp = brand(t.string, 'Timestamp')
+export const Email = refinement(string, () => /* todo: validation! */ true)
+export const Timestamp = brand(string, 'Timestamp')
 
-export const UserId = brand(t.string, 'UserId')
+export const UserId = brand(string, 'UserId')
 
-export const UserInfo = t.partial({
-  profileId: UserId,
+export const UserInfo = partial({
   email: Email,
-  twitterHandle: t.string
+  twitterHandle: string
 })
 
 // helper function for creating nominal type in TS
 // by using intersection with { __brand: Type }
 // https://github.com/Microsoft/TypeScript/issues/202
 function brand<T, B extends string> (
-  type: t.Type<any, T>,
+  type: Type<any, T>,
   _brand: B
-): t.Type<any, T & { __brand: B }> {
+): Type<any, T & { __brand: B }> {
   return type as any
 }

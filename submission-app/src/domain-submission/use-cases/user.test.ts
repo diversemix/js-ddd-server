@@ -22,6 +22,7 @@ describe('user tests', () => {
     expect(user).toHaveProperty('userId')
     expect(user.userId).toBe(userId)
     expect(user.userInfo.twitterHandle).toBe('@mickeymouse')
+    expect(user.userInfo).toHaveProperty('avatar')
   })
 })
 

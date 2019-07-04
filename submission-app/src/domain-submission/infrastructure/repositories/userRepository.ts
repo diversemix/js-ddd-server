@@ -1,9 +1,8 @@
 import { UserRepository, User, UserInfo, UserId } from '../../domain/types'
+import request from 'request-json';
 
-// import request from 'request-json';
-// const client = request.createClient('https://reqres.in/');
-// console.log('repo::getById')
-// return client.get(`api/users/${userId}`);
+const client = request.createClient('https://reqres.in/');
+
 
 export const userRepository: UserRepository = {
   save: (u: User) => {
@@ -11,23 +10,27 @@ export const userRepository: UserRepository = {
     return Promise.resolve(u)
   },
 
-  getById: (id: UserId) => {
+  getById: async (id: UserId) => {
+    // simulate querying the profiles service to get some remote info
+    const response = await client.get(`api/users/${id}`);
+    const remoteInfo = response.body.data;
     const testUser : User = {
       userId: id,
       userInfo: {
         email: 'mickey@mouse.com',
-        twitterHandle: '@mickeymouse'
+        twitterHandle: '@mickeymouse',
+        ...remoteInfo
       }
-    }
-    return Promise.resolve(testUser)
+    };
+    return Promise.resolve(testUser);
   },
 
   create: (info: UserInfo) => {
     const newUser : User = {
       userId: 42,
       userInfo: info
-    }
-    return Promise.resolve(newUser)
+    };
+    return Promise.resolve(newUser);
   }
 }
 

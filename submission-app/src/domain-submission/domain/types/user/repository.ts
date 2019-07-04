@@ -1,6 +1,7 @@
-import { User, UserId, UserInfo } from '../index'
+import { User, UserId, UserInfo, UserStorage } from '../index'
 
-export type UserRepository = {
+// This is designed to be publisher agnostic ... i.e. anyone can use it
+export interface UserRepositoryInterface {
   save: (u: User) => Promise<User>
   getById: (id: UserId) => Promise<User>
   create: (info: UserInfo) => Promise<User>

@@ -1,16 +1,19 @@
-import { UserRepository, User, UserInfo, UserId } from '../../domain/types'
+import { UserRepositoryInterface, User, UserInfo, UserId } from '../../domain/types'
 import request from 'request-json';
 
 const client = request.createClient('https://reqres.in/');
 
+export class UserRepository implements UserRepositoryInterface {
+  constructor() {
 
-export const userRepository: UserRepository = {
-  save: (u: User) => {
+  }
+
+  save (u: User) {
     console.log(`userRepository::create(${u.userId})::save::user`)
     return Promise.resolve(u)
-  },
+  }
 
-  getById: async (id: UserId) => {
+  async getById (id: UserId) {
     // simulate querying the profiles service to get some remote info
     const response = await client.get(`api/users/${id}`);
     const remoteInfo = response.body.data;
@@ -23,9 +26,9 @@ export const userRepository: UserRepository = {
       }
     };
     return Promise.resolve(testUser);
-  },
+  }
 
-  create: (info: UserInfo) => {
+  create (info: UserInfo) {
     const newUser : User = {
       userId: 42,
       userInfo: info

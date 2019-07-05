@@ -1,11 +1,11 @@
 import { UserRepositoryInterface, User, UserInfo, UserId } from '../../domain/types'
-import request from 'request-json';
 
-const client = request.createClient('https://reqres.in/');
+/*
+ * Purpose: To show how a UserRepository interface would be implemented.
+ */
 
 export class UserRepository implements UserRepositoryInterface {
   constructor() {
-
   }
 
   save (u: User) {
@@ -14,15 +14,11 @@ export class UserRepository implements UserRepositoryInterface {
   }
 
   async getById (id: UserId) {
-    // simulate querying the profiles service to get some remote info
-    const response = await client.get(`api/users/${id}`);
-    const remoteInfo = response.body.data;
     const testUser : User = {
       userId: id,
       userInfo: {
         email: 'mickey@mouse.com',
         twitterHandle: '@mickeymouse',
-        ...remoteInfo
       }
     };
     return Promise.resolve(testUser);

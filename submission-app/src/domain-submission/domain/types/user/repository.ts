@@ -1,6 +1,10 @@
-import { User, UserId, UserInfo, UserStorage } from '../index'
+import { User, UserId, UserInfo } from '../index'
 
-// This is designed to be publisher agnostic ... i.e. anyone can use it
+/*
+ * Purpose: To show how a UserRepository interface would be defined.
+ * This is designed to be publisher agnostic ... i.e. anyone can use it.
+ */
+
 export interface UserRepositoryInterface {
   save: (u: User) => Promise<User>
   getById: (id: UserId) => Promise<User>
